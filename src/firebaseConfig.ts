@@ -1,6 +1,5 @@
 import fireObject from "firebase/app";
 import "firebase/firebase-firestore";
-console.log("env", process.env);
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

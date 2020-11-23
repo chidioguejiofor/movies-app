@@ -75,12 +75,21 @@ type CommentLayoutProps = {
 
 function CommentLayout(props: CommentLayoutProps) {
   const { onSubmitComment, comments, onChange, values } = props;
+  const MY_COMMENTS = localStorage.getItem("MY_COMMENTS")?.split(",");
+
+  const MY_UNIQUE_COMMENTS = new Set(MY_COMMENTS);
 
   return (
     <CommentLayout.Wrapper>
       <div className="messages">
         {comments.map((comment, index) => (
-          <SingleComment key={index} text={comment.comment} />
+          <SingleComment
+            key={index}
+            text={comment.comment}
+            align={
+              MY_UNIQUE_COMMENTS.has(comment.id) ? "flex-end" : "flex-start"
+            }
+          />
         ))}
       </div>
 

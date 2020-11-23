@@ -3,6 +3,7 @@ import AppHeader from "components/lib/AppHeader";
 import CommentLayout from "components/layouts/CommentLayout";
 import { commentCollection } from "firebaseConfig";
 import { RouteComponentProps } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 function Comments(props: RouteComponentProps<{ movieSlug: string }>) {
   const [comments, setComments] = useState<Record<string, any>[]>([]);
@@ -47,11 +48,25 @@ function Comments(props: RouteComponentProps<{ movieSlug: string }>) {
 
   const handleSubmit = async () => {
     if (values.comment) {
+      const commentId = uuid();
+
       await commentCollection.add({
         ...values,
+        id: commentId,
         comment: values.comment.trim(),
         commentedAt: new Date().toISOString(),
       });
+
+      const userComments = localStorage.getItem("MY_COMMENTS");
+      let splittedComments: string[] = [];
+
+      if (userComments) {
+        splittedComments = userComments.split(",");
+      }
+
+      splittedComments.push(commentId);
+
+      localStorage.setItem("MY_COMMENTS", splittedComments.join(","));
     }
   };
 

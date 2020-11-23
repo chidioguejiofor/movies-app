@@ -6,11 +6,11 @@ import { MOVIES } from "./paths";
 function NotFound() {
   return (
     <div>
-      <AppHeader/>
+      <AppHeader />
 
-    <div>
-      Page not Found Please go back <Link to={MOVIES}>Home</Link>
-    </div>
+      <div>
+        Page not Found Please go back <Link to={MOVIES}>Home</Link>
+      </div>
     </div>
   );
 }

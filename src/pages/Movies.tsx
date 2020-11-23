@@ -14,6 +14,7 @@ movies.forEach((movie) => {
 const UNIQUE_GENRES = Array.from(new Set(allTheGenres)).sort();
 
 function Movies() {
+  const [filteredMovies, setFilteredMovies] = useState(movies);
   const [values, setValues] = useState({
     search: "",
     selectedGenre: "all",
@@ -21,9 +22,8 @@ function Movies() {
 
   const [timerId, setTimerId] = useState(0);
 
-//   Debounce Logic
+  //   Debounce Logic
   useEffect(() => {
-
     if (timerId) {
       clearTimeout(timerId);
     }
@@ -49,6 +49,8 @@ function Movies() {
     }, 600);
 
     setTimerId(newTimerID);
+
+    // eslint-disable-next-line
   }, [values]);
 
   const handleChange = (e) => {
@@ -59,8 +61,6 @@ function Movies() {
       [name]: value,
     }));
   };
-
-  const [filteredMovies, setFilteredMovies] = useState(movies);
 
   return (
     <MoviePageLayout

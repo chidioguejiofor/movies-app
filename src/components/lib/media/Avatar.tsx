@@ -83,9 +83,7 @@ export function Avatar(props: AvatarProps) {
       is-square={!!showAsSquaare}
     >
       <img src={src} onError={onError} alt={alt} />
-      <p ref={paragraph} className="text">
-        {noImageText}
-      </p>
+      <p ref={paragraph}>{noImageText}</p>
     </Avatar.Wrapper>
   );
 }

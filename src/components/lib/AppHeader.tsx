@@ -10,20 +10,20 @@ type AppHeaderProps = {
 };
 
 function AppHeader(props: AppHeaderProps) {
-  const {  title='Movies Application' } = props;
+  const { title = "Movies Application" } = props;
   const location = useLocation();
+
   return (
     <AppHeader.Wrapper>
       <header>
         <div className="back">
-          {location.pathname !== MOVIES && <Link to={MOVIES}>
-          <LeftArrow height='1.5rem' width='3.5rem'/>
-          </Link>}
+          {location.pathname !== MOVIES && (
+            <Link to={MOVIES}>
+              <LeftArrow height="1.5rem" width="3.5rem" />
+            </Link>
+          )}
         </div>
-        <div className="text">
-
-       {title}
-        </div>
+        <div className="text">{title}</div>
       </header>
 
       {/* <main>
@@ -34,15 +34,13 @@ function AppHeader(props: AppHeaderProps) {
 }
 
 AppHeader.Wrapper = styled.div`
-
-
   header {
     background-color: #3f51b5;
     padding: 1rem;
     color: white;
     font-size: ${sizes.xLarge};
     display: flex;
-    .back{
+    .back {
       width: 2.5rem;
       height: 100%;
       display: flex;
@@ -50,10 +48,9 @@ AppHeader.Wrapper = styled.div`
       align-items: center;
       color: white;
     }
-    .text{
+    .text {
       text-align: center;
       width: 100%;
-
     }
   }
 `;

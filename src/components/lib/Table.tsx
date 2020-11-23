@@ -13,12 +13,11 @@ function Table(props: TableProps) {
 }
 
 Table.Wrapper = styled.table`
-  margin-top: 1rem;
   width: 100%;
   border-collapse: collapse;
 
-  a{
-      text-decoration: none;
+  a {
+    text-decoration: none;
   }
   tr {
     background-color: #fff;
@@ -48,4 +47,28 @@ Table.Wrapper = styled.table`
   }
 `;
 
+// <!-- The core Firebase JS SDK is always required and must be listed first -->
+// <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+// <!-- TODO: Add SDKs for Firebase products that you want to use
+//      https://firebase.google.com/docs/web/setup#available-libraries -->
+// <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+// <script>
+//   // Your web app's Firebase configuration
+//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//   var firebaseConfig = {
+//     apiKey: "AIzaSyD_u69XpwiHm1OxxBuecOJ9I9x0BLr3vTY",
+//     authDomain: "movie-chat-app-90b11.firebaseapp.com",
+//     databaseURL: "https://movie-chat-app-90b11.firebaseio.com",
+//     projectId: "movie-chat-app-90b11",
+//     storageBucket: "movie-chat-app-90b11.appspot.com",
+//     messagingSenderId: "576275881530",
+//     appId: "1:576275881530:web:b4256acf0e8d7cd41e5f03",
+//     measurementId: "G-FZJB39FXS7"
+//   };
+//   // Initialize Firebase
+//   firebase.initializeApp(firebaseConfig);
+//   firebase.analytics();
+// </script>
 export default Table;

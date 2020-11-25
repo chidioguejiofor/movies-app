@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppHeader from "components/lib/AppHeader";
 import CommentLayout from "components/layouts/CommentLayout";
-import { commentCollection } from "firebaseConfig";
+import { commentCollection } from "services/firebase";
 import { RouteComponentProps } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
@@ -9,6 +9,9 @@ function Comments(props: RouteComponentProps<{ movieSlug: string }>) {
   const [comments, setComments] = useState<Record<string, any>[]>([]);
   const { movieSlug } = props.match.params;
   const movieTitle = movieSlug.split("-").join(" ");
+  const [myComments, setMyComments] = useState(
+    localStorage.getItem("MY_COMMENTS") || ""
+  );
   const [values, setValues] = useState<Record<string, any>>({
     comment: "",
     movieSlug,
@@ -50,13 +53,6 @@ function Comments(props: RouteComponentProps<{ movieSlug: string }>) {
     if (values.comment) {
       const commentId = uuid();
 
-      await commentCollection.add({
-        ...values,
-        id: commentId,
-        comment: values.comment.trim(),
-        commentedAt: new Date().toISOString(),
-      });
-
       const userComments = localStorage.getItem("MY_COMMENTS");
       let splittedComments: string[] = [];
 
@@ -65,8 +61,16 @@ function Comments(props: RouteComponentProps<{ movieSlug: string }>) {
       }
 
       splittedComments.push(commentId);
+      const newMyComments = splittedComments.join(",");
 
-      localStorage.setItem("MY_COMMENTS", splittedComments.join(","));
+      localStorage.setItem("MY_COMMENTS", newMyComments);
+      setMyComments(newMyComments);
+      await commentCollection.add({
+        ...values,
+        id: commentId,
+        comment: values.comment.trim(),
+        commentedAt: new Date().toISOString(),
+      });
     }
   };
 
@@ -79,6 +83,7 @@ function Comments(props: RouteComponentProps<{ movieSlug: string }>) {
         onSubmitComment={handleSubmit}
         comments={comments}
         values={values}
+        myComments={myComments}
       />
     </div>
   );

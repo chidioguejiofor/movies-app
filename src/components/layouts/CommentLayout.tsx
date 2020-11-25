@@ -71,11 +71,12 @@ type CommentLayoutProps = {
   onChange: (e: SyntheticEvent) => void;
   values: Record<string, any>;
   comments: Record<string, any>[];
+  myComments: string;
 };
 
 function CommentLayout(props: CommentLayoutProps) {
-  const { onSubmitComment, comments, onChange, values } = props;
-  const MY_COMMENTS = localStorage.getItem("MY_COMMENTS")?.split(",");
+  const { onSubmitComment, comments, onChange, values, myComments } = props;
+  const MY_COMMENTS = myComments?.split(",");
 
   const MY_UNIQUE_COMMENTS = new Set(MY_COMMENTS);
 
